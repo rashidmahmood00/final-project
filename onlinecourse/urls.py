@@ -1,13 +1,17 @@
-from django.urls import path
+from django.urls import include, path
+from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
+from django.conf.urls import url
 
 app_name = 'onlinecourse'
 urlpatterns = [
     # route is a string contains a URL pattern
     # view refers to the view function
     # name the URL
+    path('admin/', admin.site.urls),
+    path('onlinecourse/', include('onlinecourse.urls')),
     path(route='', view=views.CourseListView.as_view(), name='index'),
     path('registration/', views.registration_request, name='registration'),
     path('login/', views.login_request, name='login'),
